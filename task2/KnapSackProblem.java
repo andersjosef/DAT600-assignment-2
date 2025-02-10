@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;;
 
 class KnapSackProblem {
@@ -23,7 +24,8 @@ class KnapSackProblem {
     }
 
     public String toString() {
-        String toBeReturned = "id : weight : value\n";
+        String toBeReturned = "---Knapsack Problem---\n\n";
+        toBeReturned += "id : weight : value\n";
         for (int i = 0; i<items.size(); i++) {
            toBeReturned += items.get(i) + "\n";
         }
