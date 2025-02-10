@@ -30,31 +30,3 @@ class KnapSackProblem {
         return toBeReturned;
     }
 }
-
-// One entry with weight and value
-class BagEntry {
-    private int weight;
-    private int value;
-
-    BagEntry(int weight, int value) {
-        this.weight = weight;
-        this.value = value;
-
-    }
-
-    public int getWeight() {
-        return this.weight;
-    }
-
-    public int getValue() {
-        return this.value;
-    }
-
-    public double getValueByWeight() {
-        return this.value / this.weight;
-    }
-
-    public String toString() {
-        return this.weight + " : " + this.value;
-    }
-}

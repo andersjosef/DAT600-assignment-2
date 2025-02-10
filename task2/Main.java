@@ -5,7 +5,8 @@ public class Main {
 
 
         KnapSackProblem ksProblem = new KnapSackProblem(10, 1, 10, 1, 10);
-        KnapSackSolver.BinaryKnapSack(bagSize, ksProblem);
-        KnapSackSolver.FractionalKnapSack(bagSize, ksProblem);
+        // KnapSackSolver.BinaryKnapSack(bagSize, ksProblem);
+        LootBag fractionalLooot = KnapSackSolver.FractionalKnapSack(bagSize, ksProblem);
+        System.out.println(fractionalLooot);
     }
 }
