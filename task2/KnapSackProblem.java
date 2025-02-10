@@ -1,14 +1,14 @@
 import java.util.ArrayList;
-import java.lang.Math;
+import java.util.Random;;
 
 class KnapSackProblem {
     private ArrayList<Integer> items = new ArrayList<Integer>();
+    Random rand = new Random(42);
 
 
     KnapSackProblem(int numberOfItems, int minValue, int maxValue) {
-        int deltaValue = maxValue - minValue;
         for (int i = 0; i<numberOfItems; i++) {
-            items.add(minValue + (int) (Math.random() * deltaValue));
+            items.add(rand.nextInt(minValue, maxValue));
         }
         
     }
