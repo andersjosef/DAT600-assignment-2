@@ -1,16 +1,19 @@
 // One entry with weight and value
 public class BagEntry {
+    private int id;
     private int weight;
     private double value;
 
-    BagEntry(int weight, int value) {
+    BagEntry(int weight, int value, int id) {
         this.weight = weight;
         this.value = value;
+        this.id = id;
     }
 
-    BagEntry(int weight, double value) {
+    BagEntry(int weight, double value, int id) {
         this.weight = weight;
         this.value = value;
+        this.id = id;
     }
 
     public int getWeight() {
@@ -25,7 +28,11 @@ public class BagEntry {
         return this.value / this.weight;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String toString() {
-        return this.weight + " : " + this.value;
+        return this.id + " : " + this.weight + " : " + this.value;
     }
 }

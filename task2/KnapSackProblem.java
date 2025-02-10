@@ -11,7 +11,8 @@ class KnapSackProblem {
             // Generate new bagentry with weigth and value
             BagEntry newBagEntry = new BagEntry(
                 rand.nextInt(minWeight, maxWeight),
-                rand.nextInt(minValue, maxValue)
+                rand.nextInt(minValue, maxValue),
+                i + 1
             );
             items.add(newBagEntry);
         }
@@ -22,9 +23,9 @@ class KnapSackProblem {
     }
 
     public String toString() {
-        String toBeReturned = "i : weight : value\n";
+        String toBeReturned = "id : weight : value\n";
         for (int i = 0; i<items.size(); i++) {
-           toBeReturned += i + " : " + items.get(i) + "\n";
+           toBeReturned += items.get(i) + "\n";
         }
 
         return toBeReturned;

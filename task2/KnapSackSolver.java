@@ -21,11 +21,11 @@ public class KnapSackSolver {
         Collections.sort(sortedEntries, Comparator.comparingDouble(BagEntry::getValueByWeight));
         System.out.println(sortedEntries);
 
-        while (!lootBag.isFull()) {
+        while (!lootBag.isFull() && sortedEntries.size() != 0) {
             BagEntry currentMostValueable = sortedEntries.remove(sortedEntries.size()-1);
             if (lootBag.willMakeExceed(currentMostValueable)) { // Best loot is too big to fit, fraction
                 int remainingSpace = lootBag.getRemainingSpace();
-                BagEntry fractionalEntry = new BagEntry(remainingSpace, remainingSpace * currentMostValueable.getValueByWeight());
+                BagEntry fractionalEntry = new BagEntry(remainingSpace, remainingSpace * currentMostValueable.getValueByWeight(), currentMostValueable.getId());
                 lootBag.addToLoot(fractionalEntry);
             } else {
                 lootBag.addToLoot(currentMostValueable);
