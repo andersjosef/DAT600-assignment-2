@@ -1,11 +1,15 @@
 public class KnapSackSolver {
     
-    public static void BinaryKnapSack() {
+    // Binary Knapsack, needs dynamic
+    public static void BinaryKnapSack(int bagSize, KnapSackProblem ksProblem) {
         System.out.println("Im the binary version");
+        System.out.println("Bagsize: " + bagSize);
+        System.out.println("Problem: \n" + ksProblem);
     }
 
-    public static void FractionalKnapSack() {
-        System.out.println("Im the fractional version");
+    // Factional Knapsack, can be done greedy
+    public static void FractionalKnapSack(int bagSize, KnapSackProblem ksProblem) {
+        System.out.println(ksProblem.getItems());
     }
 }
 

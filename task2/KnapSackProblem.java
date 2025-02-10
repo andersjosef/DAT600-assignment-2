@@ -6,7 +6,6 @@ class KnapSackProblem {
     // Seed random for consistency
     Random rand = new Random(42); 
 
-
     KnapSackProblem(int numberOfItems, int minValue, int maxValue, int minWeight, int maxWeight) {
         for (int i = 0; i<numberOfItems; i++) {
             // Generate new bagentry with weigth and value
@@ -15,9 +14,11 @@ class KnapSackProblem {
                 rand.nextInt(minValue, maxValue)
             );
             items.add(newBagEntry);
-
         }
-        
+    }
+
+    public ArrayList<BagEntry> getItems() {
+        return this.items;
     }
 
     public String toString() {
@@ -47,6 +48,10 @@ class BagEntry {
 
     public int getValue() {
         return this.value;
+    }
+
+    public double getValueByWeight() {
+        return this.value / this.weight;
     }
 
     public String toString() {

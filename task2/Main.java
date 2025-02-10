@@ -1,10 +1,11 @@
 public class Main {
     public static void main(String[] args) {
 
+        final int bagSize = 40;
 
-        KnapSackProblem ksProblem = new KnapSackProblem(10, 5, 100, 1, 100);
-        System.out.println(ksProblem.toString());
-        KnapSackSolver.BinaryKnapSack();
-        KnapSackSolver.FractionalKnapSack();
+
+        KnapSackProblem ksProblem = new KnapSackProblem(10, 1, 10, 1, 10);
+        KnapSackSolver.BinaryKnapSack(bagSize, ksProblem);
+        KnapSackSolver.FractionalKnapSack(bagSize, ksProblem);
     }
 }
