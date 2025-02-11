@@ -7,6 +7,16 @@ class KnapSackProblem {
     Random rand = new Random(42); 
 
     KnapSackProblem(int numberOfItems, int minValue, int maxValue, int minWeight, int maxWeight) {
+        if (numberOfItems <= 0) {
+            throw new IllegalArgumentException("Problem must have more han zero items");
+        }
+        if (minValue < 0 || maxValue < 0 || minWeight < 0 || maxWeight < 0) {
+            throw new IllegalArgumentException("No negative values allowed");
+        }
+        if (minValue >= maxValue || minWeight >= maxWeight) {
+            throw new IllegalArgumentException("Minium values can not be larger or equal its value");
+        }
+
         for (int i = 0; i<numberOfItems; i++) {
             // Generate new bagentry with weigth and value
             BagEntry newBagEntry = new BagEntry(

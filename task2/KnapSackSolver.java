@@ -3,12 +3,10 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class KnapSackSolver {
-    
     // Binary Knapsack, needs dynamic
     public static void BinaryKnapSack(int bagSize, KnapSackProblem ksProblem) {
-        System.out.println("Im the binary version");
-        System.out.println("Bagsize: " + bagSize);
-        System.out.println("Problem: \n" + ksProblem);
+        int[] cache = new int[bagSize]; // Cache for best value at certain weight
+        cache[0] = 0;
     }
 
     // Factional Knapsack, can be done greedy
@@ -20,6 +18,7 @@ public class KnapSackSolver {
         ArrayList<BagEntry> sortedEntries = ksProblem.getItems();
         Collections.sort(sortedEntries, Comparator.comparingDouble(BagEntry::getValueByWeight));
 
+        // While bag of loot is not full and there are still available items to take
         while (!lootBag.isFull() && sortedEntries.size() != 0) {
             // Pop last entry which is the one with highest value to weight ratio
             BagEntry currentMostValueable = sortedEntries.remove(sortedEntries.size()-1);
