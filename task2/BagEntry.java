@@ -24,6 +24,20 @@ public class BagEntry {
         return this.value;
     }
 
+    public void setWeight(int newWeight) {
+        if (newWeight < 0) {
+            throw new IllegalArgumentException("New weight of bag entry can not be below 0");
+        }
+        this.weight = newWeight;
+    }
+
+    public void setValue(int newValue) {
+        if (newValue < 0) {
+            throw new IllegalArgumentException("New value of bag entry can not be below 0");
+        }
+        this.value = newValue;
+    }
+
     public double getValueByWeight() {
         return this.value / this.weight;
     }

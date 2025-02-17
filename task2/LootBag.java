@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class LootBag {
     private int maxCapacity;
-    private int totalWeight;
-    private int totalValue;
+    private double totalWeight;
+    private double totalValue;
     private ArrayList<BagEntry> lootedItems = new ArrayList<BagEntry>();
 
     LootBag(int maxCapacity) {
@@ -23,11 +23,23 @@ public class LootBag {
     }
 
     public int getTotalWeight() {
-        return this.totalWeight;
+        return (int)this.totalWeight;
     }
 
     public int getTotalValue() {
-        return this.totalValue;
+        return (int)this.totalValue;
+    }
+
+    public ArrayList<BagEntry> getItems() {
+        return this.lootedItems;
+    }
+
+    public void setItems(ArrayList<BagEntry> lootedItems) {
+        this.lootedItems =lootedItems;
+    }
+
+    public void addItems(ArrayList<BagEntry> lootedItems) {
+        this.lootedItems.addAll(lootedItems);
     }
 
     public boolean isFull() {
@@ -39,7 +51,7 @@ public class LootBag {
     }
     
     public int getRemainingSpace() {
-        return this.maxCapacity - this.totalWeight;
+        return (int)(this.maxCapacity - this.totalWeight);
     }
 
     public String toString() {

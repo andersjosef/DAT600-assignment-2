@@ -17,6 +17,9 @@ public class Main {
         ksProblem = new KnapSackProblem(5, 1, 10, 1, 10); // Generate problem
 
         // Binary
-        KnapSackSolver.BinaryKnapSack(bagSize, ksProblem);
+        LootBag binaryLoot = KnapSackSolver.BinaryKnapSack(bagSize, ksProblem);
+        System.out.println(binaryLoot);
+
+
     }
 }

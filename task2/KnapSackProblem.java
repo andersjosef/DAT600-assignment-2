@@ -10,7 +10,7 @@ class KnapSackProblem {
         if (numberOfItems <= 0) {
             throw new IllegalArgumentException("Problem must have more han zero items");
         }
-        if (minValue < 0 || maxValue < 0 || minWeight < 0 || maxWeight < 0) {
+        if (minValue < 0 || maxValue <= 0 || minWeight < 0 || maxWeight <= 0) {
             throw new IllegalArgumentException("No negative values allowed");
         }
         if (minValue >= maxValue || minWeight >= maxWeight) {
@@ -30,6 +30,16 @@ class KnapSackProblem {
 
     public ArrayList<BagEntry> getItems() {
         return this.items;
+    }
+
+    public ArrayList<BagEntry> getItemsThatFitGivenSize(int bagsize) {
+        ArrayList<BagEntry> itemsThatFit = new ArrayList<>();
+        for (BagEntry item : this.items) {
+            if (item.getWeight() <= bagsize) {
+                itemsThatFit.add(item);
+            }
+        }
+        return itemsThatFit;
     }
 
     public String toString() {

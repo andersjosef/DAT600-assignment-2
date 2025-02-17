@@ -1,12 +1,26 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class KnapSackSolver {
     // Binary Knapsack, needs dynamic
-    public static void BinaryKnapSack(int bagSize, KnapSackProblem ksProblem) {
-        int[] cache = new int[bagSize]; // Cache for best value at certain weight
-        cache[0] = 0;
+    public static LootBag BinaryKnapSack(int bagSize, KnapSackProblem ksProblem) {
+
+        // Pluss 1 for completely empty bag and no items
+        // Y = items X = bagsize
+        LootBag cache[][] = new LootBag[ksProblem.getItems().size() + 1][bagSize + 1];
+        Arrays.fill(cache[0], new LootBag(bagSize));
+
+        for (int y = 0; y < cache.length; y++) {
+            for (int x = 0; x <cache[0].length; x++) {
+
+            }
+
+        }
+
+        // Return the absolute last value in cache
+        return cache[cache.length - 1][cache[0].length - 1]; 
     }
 
     // Factional Knapsack, can be done greedy
