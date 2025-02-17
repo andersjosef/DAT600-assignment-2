@@ -5,6 +5,7 @@ public class Main {
 
 
         // Create Knapsack problem
+        System.out.println("--- FRACTIONAL ---");
         KnapSackProblem ksProblem = new KnapSackProblem(5, 1, 10, 1, 10); // Generate problem
         System.out.println(ksProblem); 
 
@@ -14,7 +15,9 @@ public class Main {
         System.out.println(fractionalLooot);
 
         // Generate KnapsackProblem
+        System.out.println("--- BINARY ---");
         ksProblem = new KnapSackProblem(5, 1, 10, 1, 10); // Generate problem
+        System.out.println(ksProblem); 
 
         // Binary
         LootBag binaryLoot = KnapSackSolver.BinaryKnapSack(bagSize, ksProblem);

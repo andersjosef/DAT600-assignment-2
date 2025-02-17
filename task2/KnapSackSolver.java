@@ -14,7 +14,7 @@ public class KnapSackSolver {
 
         for (int y = 0; y < cache.length; y++) {
             for (int x = 0; x <cache[0].length; x++) {
-
+                // Option one previous above pluss current item
             }
 
         }
