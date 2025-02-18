@@ -40,6 +40,10 @@ public class LootBag {
 
     public void addItems(ArrayList<BagEntry> lootedItems) {
         this.lootedItems.addAll(lootedItems);
+        for (BagEntry bagEntry : lootedItems) {
+            this.totalWeight += bagEntry.getWeight();
+            this.totalValue += bagEntry.getValue();
+        }
     }
 
     public boolean isFull() {

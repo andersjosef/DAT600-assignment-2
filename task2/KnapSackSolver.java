@@ -14,22 +14,27 @@ public class KnapSackSolver {
         Arrays.fill(cache[0], new LootBag(bagSize));
 
         // Starts on the first item
-        for (int y = 0; y < cache.length; y++) {
+        for (int y = 1; y < cache.length; y++) {
             for (int x = 0; x <cache[0].length; x++) {
                 // Option one previous above pluss current item
-<<<<<<< HEAD
-=======
-                int optionOne;
                 int prevY = y-1;
-                int weightOfLastItem = y-1 >=0 ? items.get(y-1).getWeight() : 0;
-                if (isOutOfRange(x-weightOfLastItem, y, cache)) {
-                    // Y == curretn cache slot - 1
-                    if 
-                }
+                int weightOfLastItem = y-1 >=0 ? items.get(prevY).getWeight() : 0;
+                int option1 = (int)items.get(y-1).getValue();
+                boolean isOOB = isOutOfRangeX(x-weightOfLastItem, y, cache);
+                option1 += isOOB ?  0: cache[y-1][x-weightOfLastItem].getTotalValue();
 
-                    // Option 2
-                    optionOne = cache[y][x];
->>>>>>> origin/main
+                int option2 = cache[prevY][x].getTotalValue();
+
+                LootBag thisLootBag = new LootBag(bagSize);
+                if (option1 > option2) {
+                    if (!isOOB) {
+                    thisLootBag.addItems(cache[y-1][x-weightOfLastItem].getItems());
+                    }
+                    thisLootBag.addToLoot(items.get(y));
+                } else {
+                    thisLootBag.addItems(items);
+                }
+                cache[y][x] = thisLootBag;
             }
 
         }
@@ -38,8 +43,15 @@ public class KnapSackSolver {
         return cache[cache.length - 1][cache[0].length - 1]; 
     }
 
-    private static boolean isOutOfRange(int x, int y, LootBag[][] cache) {
-        if ((x < 0 || x >= cache[0].length) || (y < 0 || y >= cache.length)) {
+    private static boolean isOutOfRangeX(int x, int y, LootBag[][] cache) {
+        if (x < 0 || x >= cache[0].length) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isOutOfRangeY(int x, int y, LootBag[][] cache) {
+        if (y < 0 || y >= cache.length) {
             return true;
         }
         return false;
