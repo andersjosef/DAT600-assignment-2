@@ -15,7 +15,6 @@ public class LootBag {
     }
     
     public void addToLoot(BagEntry bagEntry) {
-        // Total values
         this.totalWeight += bagEntry.getWeight();
         this.totalValue += bagEntry.getValue();
 
