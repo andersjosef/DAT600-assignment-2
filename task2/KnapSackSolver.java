@@ -9,18 +9,40 @@ public class KnapSackSolver {
 
         // Pluss 1 for completely empty bag and no items
         // Y = items X = bagsize
-        LootBag cache[][] = new LootBag[ksProblem.getItems().size() + 1][bagSize + 1];
+        ArrayList<BagEntry> items = ksProblem.getItems();
+        LootBag[][] cache = new LootBag[items.size() + 1][bagSize + 1];
         Arrays.fill(cache[0], new LootBag(bagSize));
 
+        // Starts on the first item
         for (int y = 0; y < cache.length; y++) {
             for (int x = 0; x <cache[0].length; x++) {
                 // Option one previous above pluss current item
+<<<<<<< HEAD
+=======
+                int optionOne;
+                int prevY = y-1;
+                int weightOfLastItem = y-1 >=0 ? items.get(y-1).getWeight() : 0;
+                if (isOutOfRange(x-weightOfLastItem, y, cache)) {
+                    // Y == curretn cache slot - 1
+                    if 
+                }
+
+                    // Option 2
+                    optionOne = cache[y][x];
+>>>>>>> origin/main
             }
 
         }
 
         // Return the absolute last value in cache
         return cache[cache.length - 1][cache[0].length - 1]; 
+    }
+
+    private static boolean isOutOfRange(int x, int y, LootBag[][] cache) {
+        if ((x < 0 || x >= cache[0].length) || (y < 0 || y >= cache.length)) {
+            return true;
+        }
+        return false;
     }
 
     // Factional Knapsack, can be done greedy
