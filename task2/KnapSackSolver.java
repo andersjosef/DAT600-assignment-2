@@ -1,60 +1,46 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class KnapSackSolver {
     // Binary Knapsack, needs dynamic
     public static LootBag BinaryKnapSack(int bagSize, KnapSackProblem ksProblem) {
-
-        // Pluss 1 for completely empty bag and no items
-        // Y = items X = bagsize
         ArrayList<BagEntry> items = ksProblem.getItems();
-        LootBag[][] cache = new LootBag[items.size() + 1][bagSize + 1];
-        Arrays.fill(cache[0], new LootBag(bagSize));
-
-        // Starts on the first item
-        for (int y = 1; y < cache.length; y++) {
-            for (int x = 0; x <cache[0].length; x++) {
-                // Option one previous above pluss current item
-                int prevY = y-1;
-                int weightOfLastItem = y-1 >=0 ? items.get(prevY).getWeight() : 0;
-                int option1 = (int)items.get(y-1).getValue();
-                boolean isOOB = isOutOfRangeX(x-weightOfLastItem, y, cache);
-                option1 += isOOB ?  0: cache[y-1][x-weightOfLastItem].getTotalValue();
-
-                int option2 = cache[prevY][x].getTotalValue();
-
-                LootBag thisLootBag = new LootBag(bagSize);
-                if (option1 > option2) {
-                    if (!isOOB) {
-                    thisLootBag.addItems(cache[y-1][x-weightOfLastItem].getItems());
-                    }
-                    thisLootBag.addToLoot(items.get(y));
-                } else {
-                    thisLootBag.addItems(items);
-                }
-                cache[y][x] = thisLootBag;
+        int n = items.size();
+        
+        // Create DP table
+        LootBag[][] cache = new LootBag[n + 1][bagSize + 1];
+        
+        // Initialize DP table with empty LootBags
+        for (int i = 0; i <= n; i++) {
+            for (int w = 0; w <= bagSize; w++) {
+                cache[i][w] = new LootBag(bagSize);
             }
-
         }
 
-        // Return the absolute last value in cache
-        return cache[cache.length - 1][cache[0].length - 1]; 
-    }
+        // Dynamic Programming Bottom-Up Approach
+        for (int i = 1; i <= n; i++) {
+            BagEntry currentItem = items.get(i - 1);
+            int itemWeight = currentItem.getWeight();
 
-    private static boolean isOutOfRangeX(int x, int y, LootBag[][] cache) {
-        if (x < 0 || x >= cache[0].length) {
-            return true;
-        }
-        return false;
-    }
+            for (int w = 0; w <= bagSize; w++) {
+                // Option 1: Do not take the item
+                LootBag withoutItem = cache[i - 1][w];
 
-    private static boolean isOutOfRangeY(int x, int y, LootBag[][] cache) {
-        if (y < 0 || y >= cache.length) {
-            return true;
+                // Option 2: Take the item (if it fits)
+                LootBag withItem = new LootBag(bagSize);
+                if (itemWeight <= w) {
+                    withItem.addItems(cache[i - 1][w - itemWeight].getItems());
+                    withItem.addToLoot(currentItem);
+                }
+
+                // Store the better option
+                cache[i][w] = (withItem.getTotalValue() > withoutItem.getTotalValue()) ? withItem : withoutItem;
+            }
         }
-        return false;
+
+        // Return the optimal loot bag
+        return cache[n][bagSize];
     }
 
     // Factional Knapsack, can be done greedy
